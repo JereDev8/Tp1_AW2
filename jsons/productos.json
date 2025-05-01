@@ -1,82 +1,90 @@
 [
-    {
-        "id": 1,
-        "nombre": "Camiseta",
-        "precio": 19.99,
-        "categoria": "Ropa",
-        "descripcion": "Camiseta de algodón 100% con estampado.",
-        "imagen": "https://example.com/camiseta.jpg"
-    },
-    {
-        "id": 2,
-        "nombre": "Pantalones",
-        "precio": 39.99,
-        "categoria": "Ropa",
-        "descripcion": "Pantalones vaqueros de corte recto.",
-        "imagen": "https://example.com/pantalones.jpg"
-    },
-    {
-        "id": 3,
-        "nombre": "Zapatillas",
-        "precio": 59.99,
-        "categoria": "Calzado",
-        "descripcion": "Zapatillas deportivas ligeras y cómodas.",
-        "imagen": "https://example.com/zapatillas.jpg"
-    },
-    {
-        "id": 4,
-        "nombre": "Chaqueta",
-        "precio": 79.99,
-        "categoria": "Ropa",
-        "descripcion": "Chaqueta impermeable con capucha.",
-        "imagen": "https://example.com/chaqueta.jpg"
-    },
-    {
-        "id": 5,
-        "nombre": "Mochila",
-        "precio": 49.99,
-        "categoria": "Accesorios",
-        "descripcion": "Mochila resistente con múltiples compartimentos.",
-        "imagen": "https://example.com/mochila.jpg"
-    },
-    {
-        "id": 6,
-        "nombre": "Reloj",
-        "precio": 129.99,
-        "categoria": "Accesorios",
-        "descripcion": "Reloj digital con cronómetro y alarma.",
-        "imagen": "https://example.com/reloj.jpg"
-    },
-    {
-        "id": 7,
-        "nombre": "Gorra",
-        "precio": 14.99,
-        "categoria": "Accesorios",
-        "descripcion": "Gorra ajustable con diseño moderno.",
-        "imagen": "https://example.com/gorra.jpg"
-    },
-    {
-        "id": 8,
-        "nombre": "Botas",
-        "precio": 89.99,
-        "categoria": "Calzado",
-        "descripcion": "Botas de montaña resistentes al agua.",
-        "imagen": "https://example.com/botas.jpg"
-    },
-    {
-        "id": 9,
-        "nombre": "Bufanda",
-        "precio": 24.99,
-        "categoria": "Accesorios",
-        "descripcion": "Bufanda de lana suave y cálida.",
-        "imagen": "https://example.com/bufanda.jpg"
-    },
-    {
-        "id": 10,
-        "nombre": "Guantes",
-        "precio": 19.99,
-        "categoria": "Accesorios",
-        "descripcion": "Guantes térmicos ideales para el invierno.",
-        "imagen": "https://example.com/guantes.jpg"
-    }
+  {
+    "id": 1,
+    "nombre": "Camiseta",
+    "precio": 19.99,
+    "categoria": "Ropa",
+    "descripcion": "Camiseta de algodón 100% con estampado.",
+    "imagen": "https://example.com/camiseta.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Pantalones",
+    "precio": 39.99,
+    "categoria": "Ropa",
+    "descripcion": "Pantalones vaqueros de corte recto.",
+    "imagen": "https://example.com/pantalones.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "Zapatillas",
+    "precio": 59.99,
+    "categoria": "Calzado",
+    "descripcion": "Zapatillas deportivas ligeras y cómodas.",
+    "imagen": "https://example.com/zapatillas.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "Chaqueta",
+    "precio": 79.99,
+    "categoria": "Ropa",
+    "descripcion": "Chaqueta impermeable con capucha.",
+    "imagen": "https://example.com/chaqueta.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "Mochila",
+    "precio": 49.99,
+    "categoria": "Accesorios",
+    "descripcion": "Mochila resistente con múltiples compartimentos.",
+    "imagen": "https://example.com/mochila.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "Reloj",
+    "precio": 129.99,
+    "categoria": "Accesorios",
+    "descripcion": "Reloj digital con cronómetro y alarma.",
+    "imagen": "https://example.com/reloj.jpg"
+  },
+  {
+    "id": 7,
+    "nombre": "Gorra",
+    "precio": 14.99,
+    "categoria": "Accesorios",
+    "descripcion": "Gorra ajustable con diseño moderno.",
+    "imagen": "https://example.com/gorra.jpg"
+  },
+  {
+    "id": 8,
+    "nombre": "Botas",
+    "precio": 89.99,
+    "categoria": "Calzado",
+    "descripcion": "Botas de montaña resistentes al agua.",
+    "imagen": "https://example.com/botas.jpg"
+  },
+  {
+    "id": 9,
+    "nombre": "Bufanda",
+    "precio": 24.99,
+    "categoria": "Accesorios",
+    "descripcion": "Bufanda de lana suave y cálida.",
+    "imagen": "https://example.com/bufanda.jpg"
+  },
+  {
+    "id": 10,
+    "nombre": "Guantes",
+    "precio": 19.99,
+    "categoria": "Accesorios",
+    "descripcion": "Guantes térmicos ideales para el invierno.",
+    "imagen": "https://example.com/guantes.jpg"
+  },
+  {
+    "id": 11,
+    "nombre": "Gorra Nike",
+    "precio": 4.55,
+    "categoria": "Accesorio",
+    "descripcion": "Gorra Nike made in USA",
+    "imagen": "https://example.com/gorra.jpg"
+  }
 ]

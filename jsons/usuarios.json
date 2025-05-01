@@ -1,72 +1,79 @@
 [
-    {
-        "id": 1,
-        "nombre": "Juan",
-        "apellido": "Pérez",
-        "email": "juan.perez@example.com",
-        "contraseña": "password123"
-    },
-    {
-        "id": 2,
-        "nombre": "María",
-        "apellido": "Gómez",
-        "email": "maria.gomez@example.com",
-        "contraseña": "securepass456"
-    },
-    {
-        "id": 3,
-        "nombre": "Carlos",
-        "apellido": "López",
-        "email": "carlos.lopez@example.com",
-        "contraseña": "mypassword789"
-    },
-    {
-        "id": 4,
-        "nombre": "Ana",
-        "apellido": "Martínez",
-        "email": "ana.martinez@example.com",
-        "contraseña": "pass1234"
-    },
-    {
-        "id": 5,
-        "nombre": "Luis",
-        "apellido": "Rodríguez",
-        "email": "luis.rodriguez@example.com",
-        "contraseña": "qwerty567"
-    },
-    {
-        "id": 6,
-        "nombre": "Sofía",
-        "apellido": "Hernández",
-        "email": "sofia.hernandez@example.com",
-        "contraseña": "abc123xyz"
-    },
-    {
-        "id": 7,
-        "nombre": "Miguel",
-        "apellido": "Fernández",
-        "email": "miguel.fernandez@example.com",
-        "contraseña": "password2025"
-    },
-    {
-        "id": 8,
-        "nombre": "Laura",
-        "apellido": "García",
-        "email": "laura.garcia@example.com",
-        "contraseña": "lauraPass99"
-    },
-    {
-        "id": 9,
-        "nombre": "Diego",
-        "apellido": "Torres",
-        "email": "diego.torres@example.com",
-        "contraseña": "torresKey88"
-    },
-    {
-        "id": 10,
-        "nombre": "Elena",
-        "apellido": "Ruiz",
-        "email": "elena.ruiz@example.com",
-        "contraseña": "elenaSecure77"
-    }
+  {
+    "id": 1,
+    "nombre": "Juan",
+    "apellido": "Pérez",
+    "email": "juan.perez@example.com",
+    "contraseña": "password123"
+  },
+  {
+    "id": 2,
+    "nombre": "María",
+    "apellido": "Gómez",
+    "email": "maria.gomez@example.com",
+    "contraseña": "securepass456"
+  },
+  {
+    "id": 3,
+    "nombre": "Carlos",
+    "apellido": "López",
+    "email": "carlos.lopez@example.com",
+    "contraseña": "mypassword789"
+  },
+  {
+    "id": 4,
+    "nombre": "Ana",
+    "apellido": "Martínez",
+    "email": "ana.martinez@example.com",
+    "contraseña": "pass1234"
+  },
+  {
+    "id": 5,
+    "nombre": "Luis",
+    "apellido": "Rodríguez",
+    "email": "luis.rodriguez@example.com",
+    "contraseña": "qwerty567"
+  },
+  {
+    "id": 6,
+    "nombre": "Sofía",
+    "apellido": "Hernández",
+    "email": "sofia.hernandez@example.com",
+    "contraseña": "abc123xyz"
+  },
+  {
+    "id": 7,
+    "nombre": "Miguel",
+    "apellido": "Fernández",
+    "email": "miguel.fernandez@example.com",
+    "contraseña": "password2025"
+  },
+  {
+    "id": 8,
+    "nombre": "Laura",
+    "apellido": "García",
+    "email": "laura.garcia@example.com",
+    "contraseña": "lauraPass99"
+  },
+  {
+    "id": 9,
+    "nombre": "Diego",
+    "apellido": "Torres",
+    "email": "diego.torres@example.com",
+    "contraseña": "torresKey88"
+  },
+  {
+    "id": 10,
+    "nombre": "Elena",
+    "apellido": "Ruiz",
+    "email": "elena.ruiz@example.com",
+    "contraseña": "elenaSecure77"
+  },
+  {
+    "id": 11,
+    "nombre": "Jeremias",
+    "apellido": "Quinteros",
+    "email": "quinterosjeremias@example.com",
+    "contraseña": "securepass456"
+  }
 ]
