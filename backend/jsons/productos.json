@@ -35,7 +35,7 @@
     "id": 5,
     "nombre": "Mochila",
     "precio": 49.99,
-    "categoria": "Accesorios",
+    "categoria": "Accesorio",
     "descripcion": "Mochila resistente con múltiples compartimentos.",
     "imagen": "https://example.com/mochila.jpg"
   },
@@ -43,7 +43,7 @@
     "id": 6,
     "nombre": "Reloj",
     "precio": 129.99,
-    "categoria": "Accesorios",
+    "categoria": "Accesorio",
     "descripcion": "Reloj digital con cronómetro y alarma.",
     "imagen": "https://example.com/reloj.jpg"
   },
@@ -67,7 +67,7 @@
     "id": 9,
     "nombre": "Bufanda",
     "precio": 24.99,
-    "categoria": "Accesorios",
+    "categoria": "Accesorio",
     "descripcion": "Bufanda de lana suave y cálida.",
     "imagen": "https://example.com/bufanda.jpg"
   },
@@ -75,7 +75,7 @@
     "id": 10,
     "nombre": "Guantes",
     "precio": 19.99,
-    "categoria": "Accesorios",
+    "categoria": "Accesorio",
     "descripcion": "Guantes térmicos ideales para el invierno.",
     "imagen": "https://example.com/guantes.jpg"
   },

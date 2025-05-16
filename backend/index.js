@@ -1,7 +1,10 @@
 import express from 'express';
 import fs from 'fs/promises';
 import path from 'path';
+import cors from 'cors';
 import { fileURLToPath } from 'url';
+
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,6 +14,12 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors({
+    origin: 'http://127.0.0.1:5500', // Permitir solo este dominio
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+    allowedHeaders: ['Content-Type', 'Authorization'] // Headers permitidos
+}));
+
 
 app.get('/api/usuarios', async (req, res) => {
     try {
@@ -63,6 +72,18 @@ app.post('/api/usuarios', async (req, res) => {
     }
 }
 );
+
+app.get('/api/productos', async (req, res) => {
+    try {
+        const filePath = path.join(__dirname, 'jsons', 'productos.json');
+        const data = await fs.readFile(filePath, 'utf-8');
+        const productos = JSON.parse(data);
+        res.send(productos);
+    } catch (error) {
+        console.error('Error reading productos.json:', error);
+        res.status(500).send({ error: 'Error reading productos.json' });
+    }
+})
 
 app.post('/api/productos', async (req, res) => {
     const { nombre, precio, categoria, descripcion, imagen } = req.body;
@@ -118,6 +139,31 @@ app.put('/api/usuarios/:id', async (req, res) => {
     }
 });
 
+app.post('/api/ventas', async (req, res) => {
+    try {
+        const filePath = path.join(__dirname, 'jsons', 'ventas.json');
+        const data = await fs.readFile(filePath, 'utf-8');
+        const ventas = JSON.parse(data);
+
+        const venta ={
+            id: ventas.length + 1,
+            id_usuario: 1,
+            fecha: new Date().toISOString(),
+            total: req.body.total,
+            direccion: "Direccion falsa",
+            productos: req.body.productos
+        }
+
+        ventas.push(venta);
+        await fs.writeFile(filePath, JSON.stringify(ventas, null, 2), 'utf-8');
+        res.status(201).send(venta);
+
+    } catch (error) {
+        console.error('Error creando venta:', error);
+        res.status(500).send({ error: 'Error creando venta' });
+    }
+}
+)
 app.delete('/api/ventas/:id', async (req, res) => {
     const { id } = req.params;
 

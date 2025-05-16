@@ -11,6 +11,16 @@
     ]
   },
   {
+    "id": 2,
+    "id_usuario": 2,
+    "fecha": "2025-05-02",
+    "total": 29.99,
+    "dirección": "Avenida Siempre Viva 742",
+    "productos": [
+      3
+    ]
+  },
+  {
     "id": 3,
     "id_usuario": 3,
     "fecha": "2025-05-03",
@@ -148,6 +158,17 @@
     "dirección": "Calle Estrella 321",
     "productos": [
       1
+    ]
+  },
+  {
+    "id": 16,
+    "id_usuario": 1,
+    "fecha": "2025-05-16T17:07:55.543Z",
+    "total": 119.97999999999999,
+    "direccion": "Direccion falsa",
+    "productos": [
+      "2",
+      "4"
     ]
   }
 ]
