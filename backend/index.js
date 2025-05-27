@@ -2,6 +2,7 @@ import express from 'express';
 import fs from 'fs/promises';
 import path from 'path';
 import cors from 'cors';
+import bcrypt from 'bcrypt';
 import { fileURLToPath } from 'url';
 
 
@@ -59,8 +60,9 @@ app.post('/api/usuarios', async (req, res) => {
         const filePath = path.join(__dirname, 'jsons', 'usuarios.json');
         const data = await fs.readFile(filePath, 'utf-8');
         const usuarios = JSON.parse(data);
+        const hashedPassword = await bcrypt.hash(contraseña, 10);
 
-        const createdUser = { id:usuarios.length + 1, nombre, apellido, email, contraseña };
+        const createdUser = { id:usuarios.length + 1, nombre, apellido, email, contraseña: hashedPassword };
         usuarios.push(createdUser);
         await fs.writeFile(filePath, JSON.stringify(usuarios, null, 2), 'utf-8');
 

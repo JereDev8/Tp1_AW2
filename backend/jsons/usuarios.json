@@ -75,5 +75,12 @@
     "apellido": "Quinteros",
     "email": "quinterosjeremias@example.com",
     "contraseña": "securepass456"
+  },
+  {
+    "id": 12,
+    "nombre": "Jeremias",
+    "apellido": "Quinteros",
+    "email": "quinterosjeremias8@gmail.com",
+    "contraseña": "$2b$10$8mm9aGgtIcTeTzey2WwMH.KOSvw5aBddHWYieOPfs4fXUn2IV394i"
   }
 ]
