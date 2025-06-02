@@ -10,11 +10,28 @@
             margin: 0;
             padding: 0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background: linear-gradient(135deg, #6a11cb, #2575fc);
             color: #fff;
+        }
+
+        .navigation{
+            padding: 1em 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navigation nav div a{
+            color: #fff;
+            text-decoration: underline;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
         }
 
         .login-container {
@@ -73,7 +90,16 @@
     </style>
 </head>
 <body>
+    <div class="navigation">
+        <nav>
+           
+            <div>
+                <a class="register" href="/index.html">Inicio</a>
+            </div>
+        </nav>
+    </div>
     <div class="login-container">
+        
         <h1>Login</h1>
         <form>
             <input type="email" placeholder="Email" required>
@@ -81,6 +107,7 @@
             <button type="submit">Sign In</button>
         </form>
         <a href="#">Forgot your password?</a>
+        <a href="/routes/register.html">¿No estás registrado? Registrate</a>
     </div>
 </body>
 </html>
