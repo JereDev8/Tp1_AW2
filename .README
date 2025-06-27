@@ -1,0 +1,31 @@
+
+Hola profe, como le va? Aca va la explicacion de como fui construyendo este proyecto.
+
+# Marketplace en Node.js + Vanilla JS
+
+Este proyecto es un **marketplace de productos** construido con **Node.js**, **Express**, **SQLite** y **Vanilla JavaScript**. Permite a los usuarios registrarse, iniciar sesión, agregar productos al carrito y realizar compras.
+
+## 🛠 Tecnologías utilizadas
+
+- [Node.js](https://nodejs.org/)
+- [Express](https://expressjs.com/)
+- [SQLite](https://www.sqlite.org/)
+- Vanilla JavaScript
+- HTML y CSS
+
+## 🚀 Funcionalidades
+
+- Registro de usuarios
+- Inicio de sesión
+- Visualización de productos
+- Agregado de productos al carrito
+- Compra del carrito (solo para usuarios autenticados)
+
+
+## ¿Como fue desarrollado?
+
+1) Me enfoque en el Frontend. Busque que se pueda navegar entre las distintas paginas sin ningun inconveniente. Luego cree los archivos js con el fin de agregarle interactividad, por ejemplo: Busque que los productos (los cuales estaban de manera local) se renderizen de manera dinamica y que tambien se puedan filtrar segun su categoria. 
+
+2) Arranque el Backend de la aplicacion haciendo una estructura sencilla de carpetas. Luego cree el servidor con Express y poco a poco fui agregando los endpoints. Primero cree la "base de datos" en formato JSON. Una vez que veia que todas las consultas de los endpoints funcionaban, migre los datos a una base de datos SQL (SQLite) y luego pase las consultas de JSON a consultas para una base de datos real. 
+
+3) Teniendo mas formalmente el manejo de usuarios, empeze a hacer modificaciones en el Frontend. Por ejemplo: Una vez que el usuario se loguea, puede agregar productos al carrito y tambien dejan de aparecer los botones de iniciar sesion y de registrarse. Esto lo logre gracias a un buen uso del LocalStorage. 
