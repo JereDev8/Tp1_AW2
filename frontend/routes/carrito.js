@@ -4,7 +4,10 @@ const btnCc = document.querySelector("#cc");
 
 const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
-
+if(JSON.parse(localStorage.getItem("user")).loggedUser == true) {
+    document.querySelector("#btn-login").style.display = "none";
+    document.querySelector("#btn-signup").style.display = "none"; 
+}
 
 function renderCart() {
     let template = "";

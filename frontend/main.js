@@ -1,6 +1,19 @@
 const listOfProducts = document.querySelector("#product-list");
-localStorage.setItem("cart", JSON.stringify([]));
 
+if(!localStorage.getItem("cart")) {
+    localStorage.setItem("cart", JSON.stringify([]));
+}
+if(!localStorage.getItem("user")) {
+    localStorage.setItem("user", JSON.stringify({
+        loggedUser: false,
+        email: false
+    }));
+}
+else if(JSON.parse(localStorage.getItem("user")).loggedUser == true) {
+    document.querySelector("#btn-login").style.display = "none";
+    document.querySelector("#btn-signup").style.display = "none"; 
+}
+console.log(JSON.parse(localStorage.getItem("user")))   
 
 async function getProducts() {
     const response = await fetch("http://localhost:3000/api/productos");
@@ -28,6 +41,26 @@ async function renderProducts() {
 
     addToCartButtons.forEach(button => {
         button.addEventListener("click", (e) => {
+            const isLoggedUser = JSON.parse(localStorage.getItem("user")).loggedUser;
+            if (!isLoggedUser) {
+                Swal.fire({
+                    title: 'Debes iniciar sesión',
+                    text: 'Para agregar productos al carrito, debes iniciar sesión primero.',
+                    icon: 'warning',
+                    confirmButtonText: 'Iniciar sesión'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "routes/login.html";
+                    }
+                });
+                return;
+             }             
+            Swal.fire({
+                title: 'Producto agregado al carrito',
+                text: `Has agregado ${e.target.dataset.productName} al carrito`,
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            });
             const producto = {
                 id: e.target.dataset.productId,
                 nombre: e.target.dataset.productName,
@@ -39,6 +72,7 @@ async function renderProducts() {
         });
     });
 }
+
 
 renderProducts();
 

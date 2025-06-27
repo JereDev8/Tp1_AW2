@@ -4,9 +4,52 @@ import path from 'path';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
 import { fileURLToPath } from 'url';
+import e from 'cors';
+import sqlite3 from 'sqlite3';
+sqlite3.verbose();
 
+// Abrir (o crear) la base de datos
+const db = new sqlite3.Database('./db/mi_basedatos.sqlite', (err) => {
+  if (err) {
+    console.error('❌ Error al conectar:', err.message);
+  } else {
+    console.log('✅ Conexión exitosa a SQLite');
+  }
+});
 
+// ========== 1. Crear tabla products ==========
+db.run(`CREATE TABLE IF NOT EXISTS products (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT,
+    precio REAL,
+    categoria TEXT,
+    descripcion TEXT,
+    imagen TEXT
+  )`);
+  
+  
+  // ========== 2. Crear tabla users ==========
+  db.run(`CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT,
+    apellido TEXT,
+    email TEXT,
+    contraseña TEXT
+  )`);
+  
+  
+  // ========== 3. Crear tabla sales ==========
+  db.run(`CREATE TABLE IF NOT EXISTS sales (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_usuario INTEGER,
+    fecha TEXT,
+    total REAL,
+    direccion TEXT
+  )`);
+  
 
+  
+  
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -22,174 +65,176 @@ app.use(cors({
 }));
 
 
+// Obtener todos los usuarios
 app.get('/api/usuarios', async (req, res) => {
     try {
-        const filePath = path.join(__dirname, 'jsons', 'usuarios.json');
-        const data = await fs.readFile(filePath, 'utf-8');
-        const usuarios = JSON.parse(data);
-    
-        res.send(usuarios);
-      } catch (error) {
-        console.error('Error reading usuarios.json:', error);
-        res.status(500).send({ error: 'Error reading usuarios.json' });
-      }
+        db.all('SELECT * FROM users', (err, rows) => {
+            if (err) throw err;
+            res.send(rows);
+        });
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        res.status(500).send({ error: 'Error fetching users' });
+    }
 });
 
+// Obtener un usuario por ID
 app.get('/api/usuarios/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const filePath = path.join(__dirname, 'jsons', 'usuarios.json');
-        const data = await fs.readFile(filePath, 'utf-8');
-        const usuarios = JSON.parse(data);
-        
-        const usuario = usuarios.find(u => u.id === parseInt(id));
-        if (!usuario) {
-            return res.status(404).send({ error: 'Usuario not found' });
-        }
-        res.send(usuario);
+        db.get('SELECT * FROM users WHERE id = ?', [id], (err, row) => {
+            if (err) throw err;
+            if (!row) return res.status(404).send({ error: 'Usuario not found' });
+            res.send(row);
+        });
+    } catch (error) {
+        console.error('Error fetching user:', error);
+        res.status(500).send({ error: 'Error fetching user' });
     }
-    catch (error) {
-        console.error('Error reading usuarios.json:', error);
-        res.status(500).send({ error: 'Error reading usuarios.json' });
-    }  
-})
+});
 
+// Crear un nuevo usuario
 app.post('/api/usuarios', async (req, res) => {
     const { nombre, apellido, email, contraseña } = req.body;
     try {
-        const filePath = path.join(__dirname, 'jsons', 'usuarios.json');
-        const data = await fs.readFile(filePath, 'utf-8');
-        const usuarios = JSON.parse(data);
         const hashedPassword = await bcrypt.hash(contraseña, 10);
-
-        const createdUser = { id:usuarios.length + 1, nombre, apellido, email, contraseña: hashedPassword };
-        usuarios.push(createdUser);
-        await fs.writeFile(filePath, JSON.stringify(usuarios, null, 2), 'utf-8');
-
-        res.status(201).send(createdUser);
-    }
-    catch (error) {
-        console.error('Error reading usuarios.json:', error);
-        res.status(500).send({ error: 'Error reading usuarios.json' });
-    }
-}
-);
-
-app.get('/api/productos', async (req, res) => {
-    try {
-        const filePath = path.join(__dirname, 'jsons', 'productos.json');
-        const data = await fs.readFile(filePath, 'utf-8');
-        const productos = JSON.parse(data);
-        res.send(productos);
+        db.run(
+            'INSERT INTO users (nombre, apellido, email, contraseña) VALUES (?, ?, ?, ?)',
+            [nombre, apellido, email, hashedPassword],
+            function (err) {
+                if (err) throw err;
+                res.status(201).send({ id: this.lastID, nombre, apellido, email });
+            }
+        );
     } catch (error) {
-        console.error('Error reading productos.json:', error);
-        res.status(500).send({ error: 'Error reading productos.json' });
+        console.error('Error creating user:', error);
+        res.status(500).send({ error: 'Error creating user' });
     }
-})
+});
 
-app.post('/api/productos', async (req, res) => {
-    const { nombre, precio, categoria, descripcion, imagen } = req.body;
-    try {
-        const filePath = path.join(__dirname, 'jsons', 'productos.json');
-        const data = await fs.readFile(filePath, 'utf-8');
-        const productos = JSON.parse(data);
-
-        const createdProd = { id:productos.length + 1, nombre, precio, categoria, descripcion, imagen };
-        productos.push(createdProd);
-        await fs.writeFile(filePath, JSON.stringify(productos, null, 2), 'utf-8');
-
-        res.status(201).send(createdProd);
-    }
-    catch (error) {
-        console.error('Error reading productos.json:', error);
-        res.status(500).send({ error: 'Error reading productos.json' });
-    }
-}
-);
-
+// Actualizar un usuario por ID
 app.put('/api/usuarios/:id', async (req, res) => {
     const { id } = req.params;
     const { nombre, apellido, email, contraseña } = req.body;
 
     try {
-        const filePath = path.join(__dirname, 'jsons', 'usuarios.json');
-        const data = await fs.readFile(filePath, 'utf-8');
-        const usuarios = JSON.parse(data);
-
-        // Buscar el usuario por ID
-        const usuarioIndex = usuarios.findIndex(u => u.id === parseInt(id));
-        if (usuarioIndex === -1) {
-            return res.status(404).send({ error: 'Usuario not found' });
-        }
-
-        // Actualizar los datos del usuario
-        usuarios[usuarioIndex] = {
-            ...usuarios[usuarioIndex],
-            nombre: nombre || usuarios[usuarioIndex].nombre,
-            apellido: apellido || usuarios[usuarioIndex].apellido,
-            email: email || usuarios[usuarioIndex].email,
-            contraseña: contraseña || usuarios[usuarioIndex].contraseña
-        };
-
-        // Sobrescribir el archivo JSON con los datos actualizados
-        await fs.writeFile(filePath, JSON.stringify(usuarios, null, 2), 'utf-8');
-
-        res.send(usuarios[usuarioIndex]);
+        const hashedPassword = contraseña ? await bcrypt.hash(contraseña, 10) : null;
+        db.run(
+            `UPDATE users SET 
+                nombre = COALESCE(?, nombre), 
+                apellido = COALESCE(?, apellido), 
+                email = COALESCE(?, email), 
+                contraseña = COALESCE(?, contraseña) 
+            WHERE id = ?`,
+            [nombre, apellido, email, hashedPassword, id],
+            function (err) {
+                if (err) throw err;
+                if (this.changes === 0) return res.status(404).send({ error: 'Usuario not found' });
+                res.send({ id, nombre, apellido, email });
+            }
+        );
     } catch (error) {
-        console.error('Error updating usuarios.json:', error);
-        res.status(500).send({ error: 'Error updating usuarios.json' });
+        console.error('Error updating user:', error);
+        res.status(500).send({ error: 'Error updating user' });
     }
 });
 
-app.post('/api/ventas', async (req, res) => {
+// Obtener todos los productos
+app.get('/api/productos', async (req, res) => {
     try {
-        const filePath = path.join(__dirname, 'jsons', 'ventas.json');
-        const data = await fs.readFile(filePath, 'utf-8');
-        const ventas = JSON.parse(data);
-
-        const venta ={
-            id: ventas.length + 1,
-            id_usuario: 1,
-            fecha: new Date().toISOString(),
-            total: req.body.total,
-            direccion: "Direccion falsa",
-            productos: req.body.productos
-        }
-
-        ventas.push(venta);
-        await fs.writeFile(filePath, JSON.stringify(ventas, null, 2), 'utf-8');
-        res.status(201).send(venta);
-
+        db.all('SELECT * FROM products', (err, rows) => {
+            if (err) throw err;
+            res.send(rows);
+        });
     } catch (error) {
-        console.error('Error creando venta:', error);
-        res.status(500).send({ error: 'Error creando venta' });
+        console.error('Error fetching products:', error);
+        res.status(500).send({ error: 'Error fetching products' });
     }
-}
-)
+});
+
+// Crear un nuevo producto
+app.post('/api/productos', async (req, res) => {
+    const { nombre, precio, categoria, descripcion, imagen } = req.body;
+    try {
+        db.run(
+            'INSERT INTO products (nombre, precio, categoria, descripcion, imagen) VALUES (?, ?, ?, ?, ?)',
+            [nombre, precio, categoria, descripcion, imagen],
+            function (err) {
+                if (err) throw err;
+                res.status(201).send({ id: this.lastID, nombre, precio, categoria, descripcion, imagen });
+            }
+        );
+    } catch (error) {
+        console.error('Error creating product:', error);
+        res.status(500).send({ error: 'Error creating product' });
+    }
+});
+
+// Crear una nueva venta
+app.post('/api/ventas', async (req, res) => {
+    const { id_usuario, total, direccion, productos } = req.body;
+    const fecha = new Date().toISOString();
+
+    try {
+        db.run(
+            'INSERT INTO sales (id_usuario, fecha, total, direccion) VALUES (?, ?, ?, ?)',
+            [id_usuario, fecha, total, direccion],
+            function (err) {
+                if (err) throw err;
+
+                const saleId = this.lastID;
+                const saleProducts = productos.map(producto => [saleId, producto.id]);
+
+                db.run(
+                    'INSERT INTO sales_products (id_sale, id_producto) VALUES ' +
+                    saleProducts.map(() => '(?, ?)').join(', '),
+                    saleProducts.flat(),
+                    (err) => {
+                        if (err) throw err;
+                        res.status(201).send({ id: saleId, id_usuario, fecha, total, direccion, productos });
+                    }
+                );
+            }
+        );
+    } catch (error) {
+        console.error('Error creating sale:', error);
+        res.status(500).send({ error: 'Error creating sale' });
+    }
+});
+
+// Eliminar una venta por ID
 app.delete('/api/ventas/:id', async (req, res) => {
     const { id } = req.params;
 
     try {
-        const filePath = path.join(__dirname, 'jsons', 'ventas.json');
-        const data = await fs.readFile(filePath, 'utf-8');
-        const ventas = JSON.parse(data);
-
-        // Buscar el índice de la venta por ID
-        const ventaIndex = ventas.findIndex(v => v.id === parseInt(id));
-        if (ventaIndex === -1) {
-            return res.status(404).send({ error: 'Venta not found' });
-        }
-
-        // Eliminar la venta del array
-        const deletedVenta = ventas.splice(ventaIndex, 1);
-
-        // Sobrescribir el archivo JSON con los datos actualizados
-        await fs.writeFile(filePath, JSON.stringify(ventas, null, 2), 'utf-8');
-
-        res.send(deletedVenta[0]); // Enviar la venta eliminada como respuesta
+        db.run('DELETE FROM sales WHERE id = ?', [id], function (err) {
+            if (err) throw err;
+            if (this.changes === 0) return res.status(404).send({ error: 'Venta not found' });
+            res.send({ id });
+        });
     } catch (error) {
-        console.error('Error deleting venta:', error);
-        res.status(500).send({ error: 'Error deleting venta' });
+        console.error('Error deleting sale:', error);
+        res.status(500).send({ error: 'Error deleting sale' });
+    }
+});
+
+// Login de usuario
+app.post('/api/login', async (req, res) => {
+    const { email, contraseña } = req.body;
+
+    try {
+        db.get('SELECT * FROM users WHERE email = ?', [email], async (err, usuario) => {
+            if (err) throw err;
+            if (!usuario) return res.status(404).send({ error: 'Usuario not found' });
+
+            const isPasswordValid = await bcrypt.compare(contraseña, usuario.contraseña);
+            if (!isPasswordValid) return res.status(401).send({ error: 'Invalid password' });
+
+            res.send({ id: usuario.id, nombre: usuario.nombre, apellido: usuario.apellido, email: usuario.email });
+        });
+    } catch (error) {
+        console.error('Error logging in:', error);
+        res.status(500).send({ error: 'Error logging in' });
     }
 });
 

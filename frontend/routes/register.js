@@ -23,7 +23,7 @@ button.addEventListener('click', async () => {
 
     if (response.ok) {
       alert('Registration successful!');
-      window.location.href = '/login';
+      window.location.href = '/login.html';
     } else {
       const errorData = await response.json();
       alert(`Error: ${errorData.message}`);

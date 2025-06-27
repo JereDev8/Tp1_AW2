@@ -170,5 +170,27 @@
       "2",
       "4"
     ]
+  },
+  {
+    "id": 17,
+    "id_usuario": 1,
+    "fecha": "2025-06-25T15:15:12.742Z",
+    "total": 59.980000000000004,
+    "direccion": "Direccion falsa",
+    "productos": [
+      "1",
+      "2"
+    ]
+  },
+  {
+    "id": 18,
+    "id_usuario": 1,
+    "fecha": "2025-06-26T19:19:09.590Z",
+    "total": 99.98,
+    "direccion": "Direccion falsa",
+    "productos": [
+      "2",
+      "3"
+    ]
   }
 ]

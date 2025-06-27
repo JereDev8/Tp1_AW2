@@ -82,5 +82,26 @@
     "apellido": "Quinteros",
     "email": "quinterosjeremias8@gmail.com",
     "contraseña": "$2b$10$8mm9aGgtIcTeTzey2WwMH.KOSvw5aBddHWYieOPfs4fXUn2IV394i"
+  },
+  {
+    "id": 13,
+    "nombre": "Marcos",
+    "apellido": "Barrionuevo",
+    "email": "marquitos@gmail.com",
+    "contraseña": "$2b$10$JMpv7XCyWJtxmfiqMHkjreWwFZxICet6g7BEfxkumJWr9k5gS8C4K"
+  },
+  {
+    "id": 14,
+    "nombre": "Marcos",
+    "apellido": "Barrionuevo",
+    "email": "marquitos2@gmail.com",
+    "contraseña": "$2b$10$cPjgFnsWa46SOF3uGMCmmuwWRQXCVa0ZBG6X1USNfhYdol3Jq5bem"
+  },
+  {
+    "id": 15,
+    "nombre": "Marcos",
+    "apellido": "Barrionuevo",
+    "email": "marquitos3@gmail.com",
+    "contraseña": "$2b$10$jhohtzL.oWsRpNrqqoneb.0T4/nljSpQecUSt4d0pjaOr6QhxjbzK"
   }
 ]
