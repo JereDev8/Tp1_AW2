@@ -29,3 +29,6 @@ Este proyecto es un **marketplace de productos** construido con **Node.js**, **E
 2) Arranque el Backend de la aplicacion haciendo una estructura sencilla de carpetas. Luego cree el servidor con Express y poco a poco fui agregando los endpoints. Primero cree la "base de datos" en formato JSON. Una vez que veia que todas las consultas de los endpoints funcionaban, migre los datos a una base de datos SQL (SQLite) y luego pase las consultas de JSON a consultas para una base de datos real. 
 
 3) Teniendo mas formalmente el manejo de usuarios, empeze a hacer modificaciones en el Frontend. Por ejemplo: Una vez que el usuario se loguea, puede agregar productos al carrito y tambien dejan de aparecer los botones de iniciar sesion y de registrarse. Esto lo logre gracias a un buen uso del LocalStorage. 
+
+
+Video mostrando las funcionalidades: https://www.loom.com/share/d2b46ae9e07a4a7e93aa72e3ff124159?sid=43ff0064-1c25-42fc-87b3-ef1b5752865a
